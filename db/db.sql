@@ -32,7 +32,7 @@ CREATE TABLE `address_book` (
   `email` varchar(250) COLLATE utf8_unicode_ci NOT NULL,
   `street` varchar(350) COLLATE utf8_unicode_ci NOT NULL,
   `zipcode` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -46,7 +46,7 @@ CREATE TABLE `cities` (
   `id_country` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `format_code` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -58,7 +58,7 @@ CREATE TABLE `cities` (
 CREATE TABLE `countries` (
   `id` int(11) NOT NULL,
   `name` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp()
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
