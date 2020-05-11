@@ -7,8 +7,7 @@ $obj_addrbook       =       new Addressbook();
 $data               =   $obj_addrbook->select_addrbook(0);
 
 
-$fh = fopen("../downloads/people_json.json", 'w+');
-fwrite($fh, json_encode($data));
-fclose($fh);
-
-
+header('Content-Encoding: utf-8');
+header('Content-Type:  application/json; charset=utf-8');
+header('Content-Disposition: attachment; filename="people_json.json";');
+echo json_encode($data);

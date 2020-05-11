@@ -112,6 +112,7 @@
 
       </div>
       <!-- End of Main Content -->
+      <iframe id="id_download" border="0" style="display: none"></iframe>
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">

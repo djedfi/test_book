@@ -21,4 +21,8 @@ for($i=0;$i<count($data);$i++)
 
 }
 $domxml->appendChild($people);
-$domxml->save('../downloads/people_xml.xml'); 
+
+header('Content-Encoding: utf-8');
+header('Content-Type: text/xml; charset=utf-8');
+header('Content-Disposition: attachment; filename="people_xml.xml";');
+echo $domxml->saveXML();

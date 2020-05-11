@@ -40,22 +40,10 @@ $('#tbl_data_addrbook tbody').on('click', 'tr', function ()
 
 $(document).on('click', '#id_btn_export_xml', function()
 { 
-    $.ajax({
-        url: './controller/download_xml.php',
-        type: 'POST',
-        success: function() {
-            window.location = './downloads/people_xml.xml';
-        }
-    });
+    $('#id_download').attr('src', './controller/download_xml.php');
 });
 
 $(document).on('click', '#id_btn_export_json', function()
 { 
-    $.ajax({
-        url: './controller/download_json.php',
-        type: 'POST',
-        success: function() {
-            window.location = './downloads/people_json.json';
-        }
-    });
+    $('#id_download').attr('src', './controller/download_json.php');
 });
