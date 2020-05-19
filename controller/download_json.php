@@ -3,8 +3,8 @@ require('../config/db.conf.php');
 require('../class/connection.class.php');
 require('../class/addressbook.class.php');
 $obj_addrbook       =       new Addressbook();
-
-$data               =   $obj_addrbook->select_addrbook(0);
+$tag                =       $_REQUEST['tag'];
+$data               =   $obj_addrbook->select_addrbook(0,$tag);
 
 
 header('Content-Encoding: utf-8');

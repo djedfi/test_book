@@ -157,7 +157,9 @@ $(document).on('click', '#id_btn_save', function()
         },
         success: function(data) 
         {
-          if(data)
+          var obj = JSON.parse(data);
+
+          if(obj.data)
           {
             $('#modal_save_info').modal('show');
           }

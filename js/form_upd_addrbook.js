@@ -19,6 +19,25 @@ $( document ).ready(function()
       }
     });
 
+    $.ajax
+    ({    
+        type    : "GET",
+        url     : "./controller/group.ctrl.php",             
+        dataType: "json",    
+        data    : "opt=1",              
+        success : function(data)
+        {     
+            if(data.success)
+            {
+              $.each(data.data ,function(i,post)
+              {
+                  var newrow = "<option value="+post.id+">"+post.name+"</option>";
+                  $(newrow).appendTo("#id_sel_group");
+              });
+            }               
+        }
+  });
+
     $('#id_sel_city').on('change', function() 
     {
         var value   = $(this).val();
@@ -77,6 +96,7 @@ $( document ).ready(function()
                     $("#id_txt_email").val(post.email);
                     $("#id_txt_zip").val(post.zipcode);
                     $("#id_txta_street").val(post.street);
+                    $("#id_txt_tags").val(post.tags);
                 });
             }               
         }
@@ -182,7 +202,9 @@ $(document).on('click', '#id_btn_save', function()
         },
         success: function(data) 
         {
-          if(data)
+          var obj = JSON.parse(data);
+
+          if(obj.data)
           {
             $('#modal_save_info').modal('show');
           }

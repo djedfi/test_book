@@ -47,11 +47,18 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="index_group.php">
+          <i class="fas fa-fw fa-people-carry"></i>
+          <span>Groups</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="index_book.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Contacts</span>
         </a>
       </li>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -73,7 +80,7 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
           <h1 class="h3 mb-2 text-gray-800">List of Cities</h1>
-          <p class="mb-4">This tabla has all <b>Cities</b> added in the database.</p>
+          <p class="mb-4">This table has all <b>Cities</b> added in the database.</p>
           <br>
           <div class="card shadow mb-4 text-right">
               <div class="card-header py-3">

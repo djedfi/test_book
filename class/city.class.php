@@ -1,4 +1,15 @@
 <?php
+/**
+ * TEST CASE 2
+ * 
+ * CLASS CITY
+ *
+ * This class has functions to add a city in the database
+ *
+ * @author EdFi
+ * @copyright (c) 2020
+ *
+ */
 final class City extends Connection
 {
     public $id;
@@ -7,6 +18,14 @@ final class City extends Connection
     public $format_code;
     public $date;
 
+    /**
+    * Add a new record in the table: cities
+    * @param  array $data_array Array with the different values to add new record:
+    *               id_country: Id of the country  what it belong the city
+    *               name: name of the city
+    *               format_code: value of the format the zip code
+    * @return boolean If the value is true, the record was added successfully
+    */
     function new_city($data_array)
     {
         if($this->test_connection())
@@ -32,6 +51,15 @@ final class City extends Connection
         }
     }
 
+    /**
+    * Select cities in the table: cities
+    * @param  integer $id_city, if the value is 0 it will show all records else it will one specific record 
+    * @return array with the following elements:
+    *               name_city name of the city
+    *               name_country name of the country
+    *               format_code format of the zip code
+    *               date, value when it was added
+    */
     function select_city($id_city = 0)
     {
         if($id_city == 0)
@@ -52,7 +80,13 @@ final class City extends Connection
         return $row;
     }
 
-
+    /**
+    * Select countries in the table: countries
+    * @param  
+    * @return array with the following elements:
+    *               id: primary key of the tabla countries
+    *               name: name of country
+    */
     function select_country()
     {
         $sql        =   $this->obj_server->prepare("SELECT id, name FROM countries order by name asc");

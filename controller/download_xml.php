@@ -4,8 +4,9 @@ require('../class/connection.class.php');
 require('../class/addressbook.class.php');
 $obj_addrbook       =       new Addressbook();
 $domxml             =       new DomDocument('1.0', 'UTF-8'); 
+$tag                =       $_REQUEST['tag'];
 
-$data               =   $obj_addrbook->select_addrbook(0);
+$data               =   $obj_addrbook->select_addrbook(0,$tag);
 $people             =   $domxml->createElement('people');
 
 for($i=0;$i<count($data);$i++)

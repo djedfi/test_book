@@ -1,4 +1,16 @@
 <?php
+/**
+ * TEST CASE 2
+ *
+ * CLASS CONNECTION
+ * 
+ * This class has different function to connect with the database<br>
+ * It needs parameter as name of server, name of database, user and password. These information are in the configuration file. 
+ *
+ * @author EdFi
+ * @copyright (c) 2020
+ *
+ */
 class Connection
 {
     private     $server     =   '';
@@ -20,6 +32,7 @@ class Connection
         try 
         {
             $this->obj_server   =   new PDO('mysql:host='.$this->server.';dbname='.$this->db.'', $this->user,$this->pass);
+            $this->obj_server->exec('SET CHARACTER SET utf8');
         }
         catch (PDOException $e) 
         {

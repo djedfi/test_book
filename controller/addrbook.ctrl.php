@@ -10,7 +10,8 @@
     {
         case 1:
             $id_addrbook        =   isset($_REQUEST['id']) ? trim($_REQUEST['id']) : 0;
-            $data               =   $obj_addrbook->select_addrbook($id_addrbook);
+            $tag                =   isset($_REQUEST['tag']) ? trim($_REQUEST['tag']) : '';
+            $data               =   $obj_addrbook->select_addrbook($id_addrbook,$tag);
         break;
 
         case 2:
@@ -28,7 +29,8 @@
                 'first_name'            => strtoupper(trim($_REQUEST['id_txt_fname'])),
                 'email'                 => trim($_REQUEST['id_txt_email']),
                 'street'                => trim($_REQUEST['id_txta_street']),
-                'zipcode'               => strtoupper(trim($_REQUEST['id_txt_zip']))
+                'zipcode'               => strtoupper(trim($_REQUEST['id_txt_zip'])),
+                'tags'                  => strtolower(trim($_REQUEST['id_txt_tags']))
             );
             $data               =   $obj_addrbook->new_addbook($data);
         break;
@@ -40,9 +42,14 @@
                 'email'                 => trim($_REQUEST['id_txt_email']),
                 'street'                => trim($_REQUEST['id_txta_street']),
                 'zipcode'               => strtoupper(trim($_REQUEST['id_txt_zip'])),
+                'tags'                  => strtolower(trim($_REQUEST['id_txt_tags'])),
                 'id'                    => $_REQUEST['id']
             );
             $data               =   $obj_addrbook->updaddbook($data);
+        break;
+
+        case 6:
+            $data               =   $obj_addrbook->get_tags_distinct();
         break;
     }
 

@@ -46,12 +46,19 @@
           <span>Cities</span>
         </a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="index_group.php">
+          <i class="fas fa-fw fa-people-carry"></i>
+          <span>Groups</span>
+        </a>
+      </li>
       <li class="nav-item active">
         <a class="nav-link" href="index_book.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Contacts</span>
         </a>
       </li>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
@@ -85,7 +92,7 @@
                             <label for="id_txt_lname">Last Name</label>
                             <input type="text" class="form-control text-uppercase" name="id_txt_lname" id="id_txt_lname" pattern="[a-zA-Z\s]+" minlength="1" maxlength="150" required>
                             <div class="valid-feedback">
-                                Looks good!
+                                
                             </div>
                             <div class="invalid-feedback">
                                 Please provide a Lasta Name.
@@ -95,7 +102,7 @@
                             <label for="id_txt_fname">First Name</label>
                             <input type="text" class="form-control text-uppercase" name="id_txt_fname" id="id_txt_fname" pattern="[a-zA-Z\s]+" minlength="1" maxlength="150" required>
                             <div class="valid-feedback">
-                                Looks good!
+                                
                             </div>
                             <div class="invalid-feedback">
                                 Please provide a First Name.
@@ -112,43 +119,63 @@
                                 Please select a valid City.
                             </div>
                             <div class="valid-feedback">
-                                Looks good!
+                                
                             </div>
                         </div>
+
                         <div class="col-md-6 mb-3">
                             <label for="id_txt_zip">Zip Code</label>
                             <input type="text" class="form-control text-uppercase" name="id_txt_zip" id="id_txt_zip" maxlength="10" required>
                             
                             <div class="valid-feedback">
-                                Looks good!
+                                
                             </div>
                             <div class="invalid-feedback">
                                 Check possible errors:<br>
                                 - This input is required<br>
                                 - Your value does not match with the format.
-                                
                             </div>
                         </div>
+
+                        
+
+
+
                     </div>
                     <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="id_txta_street">Street</label>
+                            <textarea class="form-control text-uppercase" name="id_txta_street" id="id_txta_street" rows="3" maxlength="350"></textarea>
+                            <div class="valid-feedback">
+                                
+                            </div>
+                            <div class="invalid-feedback">
+                                Please provide a valid Street.
+                            </div>
+                        </div>
+
                         <div class="col-md-6 mb-3">
                             <label for="id_txt_email">Email</label>
                             <input type="email" class="form-control" name="id_txt_email" id="id_txt_email"  maxlength="250" required>
                             <div class="valid-feedback">
-                                Looks good!
+                                
                             </div>
                             <div class="invalid-feedback">
                                 Please provide a valid EMail.
                             </div>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="id_txta_street">Street</label>
-                            <textarea class="form-control text-uppercase" name="id_txta_street" id="id_txta_street" rows="3" maxlength="350"></textarea>
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="col-md-12 mb-3">
+                            <label for="id_txt_email">Tags (separated by comma)</label>
+                            <input type="text" class="form-control" name="id_txt_tags" id="id_txt_tags" pattern="[a-zA-Z\s,]+" required>
                             <div class="valid-feedback">
-                                Looks good!
+                                
                             </div>
                             <div class="invalid-feedback">
-                                Please provide a valid Street.
+                                Please input some tags, separated by comma
                             </div>
                         </div>
                     </div>

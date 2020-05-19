@@ -46,13 +46,13 @@
           <span>Cities</span>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="index_group.php">
           <i class="fas fa-fw fa-people-carry"></i>
           <span>Groups</span>
         </a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="index_book.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Contacts</span>
@@ -79,105 +79,39 @@
         <br>
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <h1 class="h3 mb-2 text-gray-800">New Contact</h1>
-          <p class="mb-4">Fill up the next form to create a new Contact.</p>
+          <h1 class="h3 mb-2 text-gray-800">New Group</h1>
+          <p class="mb-4">Fill up the next form to create a new Group.</p>
           <br>
           <div class="card shadow mb-4">
               <div class="card-body">
-                <form class="needs-validation" id="id_form_addrbook" novalidate>
-                <input type="hidden" name='opt' id='opt' value='4'>
+                <form class="needs-validation" id="id_form_group" novalidate>
+                    <input type="hidden" name='opt' id='opt' value='2'>
                     <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="id_txt_lname">Last Name</label>
-                            <input type="text" class="form-control text-uppercase" name="id_txt_lname" id="id_txt_lname" pattern="[a-zA-Z\s]+" minlength="1" maxlength="150" required>
-                            <div class="valid-feedback">
-                                
-                            </div>
-                            <div class="invalid-feedback">
-                                Please provide a Lasta Name.
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="id_txt_fname">First Name</label>
-                            <input type="text" class="form-control text-uppercase" name="id_txt_fname" id="id_txt_fname" pattern="[a-zA-Z\s]+" minlength="1" maxlength="150" required>
-                            <div class="valid-feedback">
-                                
-                            </div>
-                            <div class="invalid-feedback">
-                                Please provide a First Name.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="id_sel_country">Choose City</label>
-                            <select class="custom-select" name="id_sel_city" id="id_sel_city" required>
-                                <option selected disabled value="">Choose...</option>
-                            </select>
-                            <div class="invalid-feedback">
-                                Please select a valid City.
-                            </div>
-                            <div class="valid-feedback">
-                                
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="id_txt_zip">Zip Code</label>
-                            <input type="text" class="form-control text-uppercase" name="id_txt_zip" id="id_txt_zip" maxlength="10" required>
-                            
+                        <div class="col-md-12 mb-3">
+                            <label for="id_txt_city">Name of Group</label>
+                            <input type="text" class="form-control text-uppercase" name="id_txt_name" id="id_txt_name" pattern="[a-zA-Z\s]+" maxlength="250"  required>
                             <div class="valid-feedback">
                                 
                             </div>
                             <div class="invalid-feedback">
                                 Check possible errors:<br>
-                                - This input is required<br>
-                                - Your value does not match with the format.
+                                - This input is required.<br>
+                                - The format doesn't match. Only letters.
                             </div>
                         </div>
-
-                        
-
-                        
                     </div>
                     <div class="form-row">
-                        <div class="col-md-6 mb-3">
-                            <label for="id_txta_street">Street</label>
-                            <textarea class="form-control text-uppercase" name="id_txta_street" id="id_txta_street" rows="3" maxlength="350"></textarea>
-                            <div class="valid-feedback">
-                                
-                            </div>
-                            <div class="invalid-feedback">
-                                Please provide a valid Street.
-                            </div>
-                        </div>
-
-                        <div class="col-md-6 mb-3">
-                            <label for="id_txt_email">Email</label>
-                            <input type="email" class="form-control" name="id_txt_email" id="id_txt_email"  maxlength="250" required>
-                            <div class="valid-feedback">
-                                
-                            </div>
-                            <div class="invalid-feedback">
-                                Please provide a valid EMail.
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <div class="form-row">
-                      
                         <div class="col-md-12 mb-3">
-                            <label for="id_txt_email">Tags (separated by comma)</label>
-                            <input type="text" class="form-control" name="id_txt_tags" id="id_txt_tags" pattern="[a-zA-Z\s,]+" required>
+                            <label for="id_txta_street">Description</label>
+                            <textarea class="form-control text-uppercase" name="id_txta_desc" id="id_txta_desc" rows="2" maxlength="350" required></textarea>
                             <div class="valid-feedback">
                                 
                             </div>
                             <div class="invalid-feedback">
-                                Please input some tags, separated by comma
+                                Please provide a valid Description.
                             </div>
                         </div>
                     </div>
-
 
                     <button class="btn btn-primary" id="id_btn_save" type="button">Save</button>
                     <button class="btn btn-secondary" type="reset">Cancel</button>
@@ -186,8 +120,6 @@
             </div>
           </div>
         <!-- /.container-fluid -->
-
-
 
         <div class="modal fade" id="modal_save_info" tabindex="-1" role="dialog" aria-labelledby="modal_save_infoTitle" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -225,7 +157,11 @@
               </div>
             </div>
           </div>
-        </div>        
+        </div>
+
+
+
+
 
       </div>
       <!-- End of Main Content -->
@@ -266,7 +202,7 @@
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <!-- Page level custom scripts -->
-  <script src="js/form_new_addrbook.js"></script>
+  <script src="js/form_new_group.js"></script>
 </body>
 
 </html>

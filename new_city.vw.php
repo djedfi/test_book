@@ -47,11 +47,18 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="index_group.php">
+          <i class="fas fa-fw fa-people-carry"></i>
+          <span>Groups</span>
+        </a>
+      </li>
+      <li class="nav-item ">
         <a class="nav-link" href="index_book.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Contacts</span>
         </a>
       </li>
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">

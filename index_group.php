@@ -46,13 +46,13 @@
           <span>Cities</span>
         </a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item active">
         <a class="nav-link" href="index_group.php">
           <i class="fas fa-fw fa-people-carry"></i>
           <span>Groups</span>
         </a>
       </li>
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="index_book.php">
           <i class="fas fa-fw fa-table"></i>
           <span>Contacts</span>
@@ -79,37 +79,27 @@
         <br>
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          <h1 class="h3 mb-2 text-gray-800">List of Contacts</h1>
-          <p class="mb-4">This table has all <b>Contacs</b> added in the Address-Book. Click on any row to update.</p>
+          <h1 class="h3 mb-2 text-gray-800">List of Groups</h1>
+          <p class="mb-4">This table has all <b>Groups</b> added in the Address-Book.</p>
           <br>
           <div class="card shadow mb-4 text-right">
               <div class="card-header py-3">
-                Filter by Tag: <select name="id_sel_tag" id="id_sel_tag"><option selected value="">All</option></select>
-                <a href="#" class="btn btn-sm btn-primary shadow-sm" id="id_btn_export_xml">
-                  <i class="fas fa-print fa-sm text-white-50"></i> Export to XML
-                </a>
-                <a href="#" class="btn btn-sm btn-primary shadow-sm" id="id_btn_export_json">
-                  <i class="fas fa-print fa-sm text-white-50"></i> Export to JSON
-                </a>
-                <a href="new_addrbook.vw.php" class="btn btn-sm btn-success shadow-sm">
-                  <i class="fas fa-newspaper fa-sm text-white-50"></i> Add Contacts
+                <a href="new_group.vw.php" class="btn btn-sm btn-success shadow-sm">
+                  <i class="fas fa-newspaper fa-sm text-white-50"></i> Add Groups
                 </a>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table table-bordered" id="tbl_data_addrbook" width="100%" cellspacing="0">
+                  <table class="table table-bordered" id="tbl_data_addgroup" width="100%" cellspacing="0">
                     <thead class="text-center">
                       <tr>
-                        <th>Last name</th>
-                        <th>First name</th>
-                        <th>City</th>
-                        <th>Email</th>
-                        <th>Zip Code</th>
-                        <th>Tags</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Added Contacts</th>
                         <th>Date</th>
                       </tr>
                     </thead>
-                    <tbody id="tbl_data_tbody_addrbook">
+                    <tbody>
                       
                     </tbody>
                   </table>
@@ -119,9 +109,14 @@
           </div>
         <!-- /.container-fluid -->
 
+
+
+
+
+
+
       </div>
       <!-- End of Main Content -->
-      <iframe id="id_download" border="0" style="display: none"></iframe>
 
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
@@ -159,7 +154,7 @@
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
    <!--  -->
-   <script src="js/index_addrbook.js"></script>
+   <script src="js/index_addgroup.js"></script>
 </body>
 
 </html>

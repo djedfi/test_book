@@ -1,33 +1,22 @@
 $( document ).ready(function() 
 {
-  $.ajax
-    ({    
-        type    : "GET",
-        url     : "./controller/city.ctrl.php",             
-        dataType: "json",    
-        data    : "opt=2",              
-        success : function(data)
-        {     
-            if(data.success)
-            {
-              $.each(data.data ,function(i,post)
-              {
-                  var newrow = "<option value="+post.id+">"+post.name+"</option>";
-                  $(newrow).appendTo("#id_sel_country");
-              });
-            }               
-        }
-  });
+
 });
 
 $(document).on('click', '#id_btn_save', function()
 { 
   var error = false;
 
-  $('#id_form_city').find(':input:text').each(function(index) 
+  $('#id_form_group').find(':input:text').each(function(index) 
   {
     id_controller_1 = ($(this).attr('id')).toString();
-    if (document.getElementById(id_controller_1).checkValidity())
+
+    if($('#'+id_controller_1).val().trim() == '')
+    {
+        $( "#"+id_controller_1 ).removeClass( "is-valid" ).addClass( "is-invalid ");
+        error = true;
+    }
+    else if (document.getElementById(id_controller_1).checkValidity())
     {
       $( "#"+id_controller_1 ).removeClass( "is-invalid" ).addClass( "is-valid ");
     }
@@ -38,10 +27,16 @@ $(document).on('click', '#id_btn_save', function()
     }
   });
 
-  $('#id_form_city').find(' select').each(function(index) 
+  $('#id_form_group').find(' textarea').each(function(index) 
   {
     id_controller_2 = ($(this).attr('id')).toString();
-    if (document.getElementById(id_controller_2).checkValidity())
+
+    if($('#'+id_controller_2).val().trim() == '')
+    {
+        $( "#"+id_controller_2 ).removeClass( "is-valid" ).addClass( "is-invalid ");
+        error = true;
+    }
+    else if (document.getElementById(id_controller_2).checkValidity())
     {
       $( "#"+id_controller_2 ).removeClass( "is-invalid" ).addClass( "is-valid ");
     }
@@ -53,23 +48,14 @@ $(document).on('click', '#id_btn_save', function()
   });
 
 
-  if($('#id_txt_city').val().trim() == '')
-  {
-    $( "#id_txt_city" ).removeClass( "is-valid" ).addClass( "is-invalid ");
-    error = true;
-  }
-  else
-  {
-    $( "#id_txt_city").removeClass( "is-invalid" ).addClass( "is-valid ");
-  }
   
   if(!error)
   {
       $.ajax
       ({
-        url: 'controller/city.ctrl.php',
+        url: 'controller/group.ctrl.php',
         type: 'post',
-        data: $("#id_form_city").serialize(),
+        data: $("#id_form_group").serialize(),
         beforeSend: function()
         {
           $("#id_btn_save").val("Sending"); 
@@ -104,5 +90,5 @@ $(document).on('click', '#id_btn_save', function()
 
 $(document).on('click', '#id_btn_save_info', function()
 { 
-  location.href = 'index_city.php';
+  location.href = 'index_group.php';
 });
