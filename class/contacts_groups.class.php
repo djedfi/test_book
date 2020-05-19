@@ -1,6 +1,28 @@
 <?php
+/**
+ * TEST CASE 2
+ * 
+ * CLASS CONTACTS_GROUP
+ *
+ * This class contains everything related to contacts and groups
+ *
+ * @author EdFi
+ * @copyright (c) 2020
+ *
+ */
 final class ContactsGroups extends Connection
 {
+
+    /**
+    * select_contact_not_group: This class select all contacts are not in the group selected by the user
+    * @param  integer $id_group: value of the id the group selected
+    * @return array with the following elements:
+    *               id_contact: value unique of the contact
+    *               last_name: last name of the contact
+    *               first_name: first name of the contact
+    *               email: email of the contact    
+    *               name_city: name of the city where lives the contact
+    */
     function select_contact_not_group($id_group)
     {
         $sql        =   $this->obj_server->prepare("select addb.id as id_contact,addb.last_name,addb.first_name,addb.email,cit.name as name_city
@@ -13,6 +35,17 @@ final class ContactsGroups extends Connection
         return $row;
     }
 
+    /**
+    * select_contact_not_group: This class select all contacts are  in the group selected by the user
+    * @param  integer $id_group: value of the id the group selected
+    * @return array with the following elements:
+    *               id_contact: value unique of the contact
+    *               id_contact_group: value unique of the table contacts_groups, where the contact and group relationship is saved
+    *               last_name: last name of the contact
+    *               first_name: first name of the contact
+    *               email: email of the contact    
+    *               name_city: name of the city where lives the contact
+    */
     function select_contact_in_group($id_group)
     {
         $sql        =   $this->obj_server->prepare("select addb.id as id_contact,cgr.id as id_contact_group,addb.last_name,addb.first_name,addb.email,cit.name as name_city
@@ -26,11 +59,21 @@ final class ContactsGroups extends Connection
         return $row;
     }
 
+    /**
+    * Insert new record in the table contacts_groups, if the contact is inherited from other group it will insert a new record in the table: contacts_groups_inherited too.
+    * @param  array $data_array Array with the different values to add new record:
+    *               id_contact: value unique of the contact
+    *               id_group: value unique of the group
+    *               inherited: if the value is true or 1, it will add a record in the table contacts_groups_inherited
+    *               idcontgrpexi: this value represents the parent in the record of the table contacts_groups_inherited
+    * @return boolean If the value is true, the record was added successfully
+    */
     function new_contact_group($data_array)
     {
         if($this->test_connection())
         {
-            
+            $this->obj_server->beginTransaction();
+
             $sql            =   "INSERT INTO contacts_groups (id_contact,id_group,inherited)";
             $sql            .=  "VALUES (:id_contact, :id_group, :inherited)";
             $pre_sql        =   $this->obj_server->prepare($sql);
@@ -53,21 +96,37 @@ final class ContactsGroups extends Connection
 
             if($pre_sql->rowCount() > 0)
             {
-               return true;
+                $this->obj_server->commit();
+                return true;
             }
             else
             {
+                $this->obj_server->rollBack();
                 return false;
             }
 
         }
         else
         {
+            $this->obj_server->rollBack();
             return false;
         }
     }
 
-    //ESTA FUNCION RETORNARA LOS CONTACTOS QUE SE POSEE UN GRUPO SELECCIONADO Y QUE SEA POSIBLE AGREGARLOS AL GRUPO QUE SE MUESTRA EN PANTALLA.
+    
+    /**
+    * THIS FUNCTION RETURNS THE CONTACTS THAT HAVE A SELECTED GROUP AND THAT IT IS POSSIBLE TO ADD THEM TO THE GROUP THAT IS DISPLAYED. 
+    * THIS FUNCTION WORKS TO ADD  A NEW CONTACT IN THE GROUP INHERITED FROM OTHER GROUP
+    * @param  integer $idgroup_current: value of the group displayed
+    * @param  integer $id_group_sel: value of the id the group selected to know what contacts they could be added to the group displayed
+    * @return array with the following elements:
+    *               id_contact: value unique of the contact
+    *               id_contact_group: value unique of the table contacts_groups, where the contact and group relationship is saved
+    *               last_name: last name of the contact
+    *               first_name: first name of the contact
+    *               email: email of the contact    
+    *               flag_exist: if the value is different from null it could be added to the group
+    */
     function select_contact_add_by_group($idgroup_current,$id_group_sel)
     {
         $sql        =   $this->obj_server->prepare("select addb.id as id_contact,cgr.id as id_contact_group,addb.last_name,addb.first_name,addb.email,
@@ -82,7 +141,16 @@ final class ContactsGroups extends Connection
         return $row;
     }
 
-    //ESTA FUNCION MOSTRAR LOS CONTACTOS HEREDADOS DEL GRUPO QUE SE MUESTRA EN PANTALLA
+    /**
+    * THIS FUNCTION WILL RETURN THE CONTACTS BELONGING TO THE GROUP BUT THEY WERE INHERITED FROM ANOTHER GROUP
+    * @param  integer $idgroup_current: value of the group displayed
+    * @return array with the following elements:
+    *               id_contact_group_parent 
+    *               id_contact_group_child
+    *               name_contact
+    *               email_contact
+    *               name_group_parent
+    */
     function select_contact_inherited_group($id_group)
     {
         $sql        =   $this->obj_server->prepare("SELECT cg.id,cg.id_contact,cgi.id_contact_group_parent as id_group_parent,
@@ -111,10 +179,17 @@ final class ContactsGroups extends Connection
         return $colect_array_total;
     }
 
-    //ESTA FUNCION CONSULTARA LA INFORMACION DEL GRUPO PADRE, MEDIANTE EL ID DE LA TABLA CONTACTS_GROUPS
+
+    /**
+    * THIS FUNCTION WILL CONSULT THE INFORMATION OF THE FATHER GROUP, THROUGH THE ID OF THE TABLE CONTACTS_GROUPS
+    * @param  integer $id_contacts_groups
+    * @return array with the following elements:
+    *               id: value unique of the contact
+    *               name: name of the group
+    */
     function select_check_group_parent($id_contacts_groups)
     {
-        $sql        =   $this->obj_server->prepare("SELECT gp.id,gp.name FROM contacts_groups cg inner join groups gp on gp.id = cg.id_group where cg.id =:id_contacts_groups");
+        $sql        =   $this->obj_server->prepare("SELECT gp.id,gp.name FROM contacts_groups cg inner join groups gp on gp.id = cg.id_group where cg.id =:id_contacts_groups LIMIT 1");
         $sql->bindValue(':id_contacts_groups', $id_contacts_groups);
 
         $sql->execute(); 
@@ -124,7 +199,12 @@ final class ContactsGroups extends Connection
     }
 
 
-    //esta funcion eliminara todos los contactos agregados directamente al grupo y sus hijos e los hijos de sus hijos.
+    /**
+    * This function will delete all the contacts added directly to the group and their children and their children's children.
+    * @param  array $data_array Array with the different values to delete:
+    *               id_contact_group: value unique of the table contacts_groups
+    * @return boolean If the value is true, the record was DELETED successfully
+    */
     function delete_contact_inherited($data_array)
     {
         $string_where       = '';
@@ -168,7 +248,8 @@ final class ContactsGroups extends Connection
             return 'error';
         }
     }
-    //esta funcion permitira saber los nodos hijos partiendo del nodo padre.
+
+    //This function allows knowing the child nodes starting from the parent node.
     function array_nodes_to_delete($id_parent)
     {
         $array_data_pares   =   array();
@@ -207,6 +288,7 @@ final class ContactsGroups extends Connection
         return $array_data_pares;
     }
 
+    // This function checks if the parent node has children
     function check_child_relation($id_parent)
     {
         $sql        =   $this->obj_server->query("SELECT id_contact_group_child FROM contacts_groups_inherited where id_contact_group_parent =".$id_parent);
